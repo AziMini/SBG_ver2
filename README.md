@@ -1,2 +1,2 @@
 # SBG_ver2
-Personal Project SBG_ver2 (Small &amp; Interrupt Dice)
+Personal Project SBG_ver2 (Small &amp; use Interrupt  / Dice)

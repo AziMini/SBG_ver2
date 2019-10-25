@@ -105,14 +105,17 @@ public:
   virtual void flush();
   operator bool() { return true; }
   
+  /*************************************ADD***********************************************/
+  void (*_func)(void) = 0;
   void Registcallback(void (*func)(void));
+  /**************************************************************************************/
 
   using Print::write;
 
   // public only for easy access by interrupt handlers
   static inline void handle_interrupt() __attribute__((__always_inline__));
 
-  void (*_func)(void) = 0;
+  
 };
 
 

@@ -205,10 +205,11 @@ void SoftwareSerial::recv()
     "pop r18 \n\t"
     ::);
 #endif
-
+  /*************************************ADD***********************************************/
   if (SoftwareSerial::_func != NULL) {
 	  SoftwareSerial::_func();
   }
+  /**************************************************************************************/
 }
 
 uint8_t SoftwareSerial::rx_pin_read()
@@ -491,7 +492,7 @@ int SoftwareSerial::peek()
   return _receive_buffer[_receive_buffer_head];
 }
 
-
+/*************************************ADD***********************************************/
 void SoftwareSerial::Registcallback(void (*func)(void))
 {
 	if (func != NULL)
@@ -499,3 +500,4 @@ void SoftwareSerial::Registcallback(void (*func)(void))
 		SoftwareSerial::_func = func;
 	}
 }
+/**************************************************************************************/

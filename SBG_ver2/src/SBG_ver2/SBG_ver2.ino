@@ -256,23 +256,15 @@ void cube_final_number()
 //------------------------------------------------------------------------------------------------------
 void Send_msg(void)
 {
-  //char msg[100];
-  String msg = " ";
+  char msg[100];
   char temp;
-
-  recived =49;
   
-//  while (mySerial.available() > 0)
-//  {
-      Serial.println(" Received something. \n\r");
-    //  Serial.println(mySerial.available());
-      temp = mySerial.read();
-      Serial.println(temp);
-      msg += temp;
-      
-      //sprintf(msg,"%c",temp);
-//  }
-   Serial.println(msg);
+  while (mySerial.available() > 0)
+  {
+    temp = mySerial.read();
+    sprintf(msg,"%c",temp);
+  }
+  Serial.println(msg);
   if (msg == "\x02P\x03")
   {
     Recive_Erorr_flag = 0;
@@ -293,7 +285,6 @@ void Send_msg(void)
   }
   
   delay(200);
-  recived =50;
 }
 //------------------------------------------------------------------------------------------------------
 void debug_print(void)
@@ -314,7 +305,7 @@ void debug_print(void)
   
   Serial.println(" ");
 }
-
+//------------------------------------------------------------------------------------------------------
 void MPU6050_Sensing(){
   mpu6050_Read();
   mpu6050_analysis();
@@ -345,40 +336,12 @@ void setup()
   Wire.endTransmission(true);
   Serial.begin(115200);
   mySerial.begin(115200);
-//  mySerial.Registcallback(Send_msg);
+  mySerial.Registcallback(Send_msg);
 }
 //------------------------------------------------------------------------------------------------------
 //------------------------------------------------------------------------------------------------------
 void loop()
 {
-   char temp;
-   unsigned i, num;
-  //debug_print();
-/*
-    while(mySerial.available() > 0)
-   {
-      //Serial.println(" Received something. \n\r");
-      //Serial.println(mySerial.available());
-      temp = mySerial.read();
-      Serial.print(temp);
-      //msg += temp;
-      
-      //sprintf(msg,"%c",temp);
-  }
-*/
-
-
-  while(!(mySerial.available()));
-  //Serial.println(mySerial.available());
-
-  num=mySerial.available();
-
-    temp = mySerial.read();
-    Serial.print(temp);
-
-
-  mySerial.write("\x02SEND DATA. \x03");
-
-    
- // delay(100);
+   debug_print();
+   delay(100);
 }
